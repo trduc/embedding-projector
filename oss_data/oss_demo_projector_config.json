@@ -11,6 +11,12 @@
     "tensorShape": [61536, 3],
     "tensorPath": "oss_data/tensors_albert.bytes",
     "metadataPath": "oss_data/metadata_albert.tsv"
+    },
+    {
+      "tensorName": "Skip-gram 1000",
+      "tensorShape": [1000, 400],
+      "tensorPath": "oss_data/skipgram_tensors_1000.bytes",
+      "metadataPath": "oss_data/skipgram_metadata_1000.tsv"
     }
   ],
   "modelCheckpointPath": "Demo datasets"

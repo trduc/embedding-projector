@@ -11387,11 +11387,6 @@ paper-dropdown-menu paper-item {
   vertical-align: bottom;
 }
 
-#demo-data-buttons-container {
-  display: none;
-  margin-top: 10px;
-}
-
 </style>
 <div class="title">DATA</div>
 <div class="container">
@@ -11491,33 +11486,6 @@ paper-dropdown-menu paper-item {
       </paper-input>
     </div>
   </template>
-  <div id="demo-data-buttons-container">
-    <span class="button-container">
-      <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-        Load data from your computer
-      </paper-tooltip>
-      <paper-button id="upload" class="ink-button" onclick="dataDialog.open()">Load</paper-button>
-    </span>
-    <span id="publish-container" class="button-container">
-      <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-        Publish your embedding visualization and data
-      </paper-tooltip>
-      <paper-button id="host-embedding" class="ink-button" onclick="projectorConfigDialog.open()">Publish</paper-button>
-    </span>
-    <span class="button-container">
-      <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-        Download the metadata with applied modifications
-      </paper-tooltip>
-      <paper-button class="ink-button" on-click="downloadMetadataClicked">Download</paper-button>
-      <a href="#" id="downloadMetadataLink" hidden></a>
-    </span>
-    <span id="label-button" class="button-container">
-      <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-        Label selected metadata
-      </paper-tooltip>
-      <paper-button class="ink-button" on-click="metadataEditorButtonClicked" disabled="[[metadataEditorButtonDisabled]]">Label</paper-button>
-    </span>
-  </div>
   <div>
     <paper-dialog id="dataDialog" with-backdrop>
       <h2>Load data from your computer</h2>
@@ -11665,7 +11633,7 @@ l=g.querySelector("#checkpoint-file");l.innerHTML=k;l.title=g.projectorConfig.mo
 this.colorOptions[g];break}e&&(this.showForceCategoricalColorsCheckbox=!!e.tooManyUniqueValues,this.colorLegendRenderInfo=null==e.map?null:e.items?{items:e.items.map(function(h){return{color:e.map(h.label),label:h.label,count:h.count}}),thresholds:null}:{items:null,thresholds:e.thresholds},this.projector.setSelectedColorOption(e))};d.prototype.tensorWasReadFromFile=function(e,g){var h=this;a.parseRawTensors(e,function(k){var l=h.querySelector("#checkpoint-file");l.innerText=g;l.title=g;h.projector.updateDataSet(k)})};
 d.prototype.metadataWasReadFromFile=function(e,g){var h=this;a.parseRawMetadata(e,function(k){h.projector.updateDataSet(h.projector.dataSet,k,g)})};d.prototype.getEmbeddingInfoByName=function(e){for(var g=0;g<this.projectorConfig.embeddings.length;g++){var h=this.projectorConfig.embeddings[g];if(h.tensorName===e)return h}};d.prototype.setupUploadButtons=function(){var e=this,g=this.querySelector("#file");g.onchange=function(){var v=g.files[0];g.value="";var u=new FileReader;u.onload=function(){e.tensorWasReadFromFile(u.result,
 v.name)};u.readAsArrayBuffer(v)};this.querySelector("#upload-tensors").onclick=function(){g.click()};var h=this.querySelector("#file-metadata");h.onchange=function(){var v=h.files[0];h.value="";var u=new FileReader;u.onload=function(){e.metadataWasReadFromFile(u.result,v.name)};u.readAsArrayBuffer(v)};this.querySelector("#upload-metadata").onclick=function(){h.click()};"demo"!==this.projector.servingMode&&(this.$$("#publish-container").style.display="none",this.$$("#upload-tensors-step-container").style.display=
-"none",this.$$("#upload-metadata-label").style.display="none");this.$$("#demo-data-buttons-container").style.display="flex";var k=this.$$("#projector-config-template"),l={embeddings:[{tensorName:"My tensor",tensorShape:[1E3,50],tensorPath:"https://raw.githubusercontent.com/.../tensors.tsv",metadataPath:"https://raw.githubusercontent.com/.../optional.metadata.tsv"}]};this.setProjectorConfigTemplateJson(k,l);var m=this.$$("#config-sprite-checkbox");m.onchange=function(){m.checked?l.embeddings[0].sprite=
+"none",this.$$("#upload-metadata-label").style.display="none");var k=this.$$("#projector-config-template"),l={embeddings:[{tensorName:"My tensor",tensorShape:[1E3,50],tensorPath:"https://raw.githubusercontent.com/.../tensors.tsv",metadataPath:"https://raw.githubusercontent.com/.../optional.metadata.tsv"}]};this.setProjectorConfigTemplateJson(k,l);var m=this.$$("#config-sprite-checkbox");m.onchange=function(){m.checked?l.embeddings[0].sprite=
 {imagePath:"https://github.com/.../optional.sprite.png",singleImageDim:[32,32]}:delete l.embeddings[0].sprite;e.setProjectorConfigTemplateJson(k,l)};var n=this.$$("#config-bookmarks-checkbox");n.onchange=function(){n.checked?l.embeddings[0].bookmarksPath="https://raw.githubusercontent.com/.../bookmarks.txt":delete l.embeddings[0].bookmarksPath;e.setProjectorConfigTemplateJson(k,l)};var q=this.$$("#config-metadata-checkbox");q.onchange=function(){q.checked?l.embeddings[0].metadataPath="https://raw.githubusercontent.com/.../optional.metadata.tsv":
 delete l.embeddings[0].metadataPath;e.setProjectorConfigTemplateJson(k,l)};var p=this.$$("#projector-config-url"),t=this.$$("#projector-share-url"),r=this.$$("#projector-share-url-link");p.onchange=function(){var v=location.protocol+"//"+location.host+location.pathname+"?config\x3d"+p.value;t.value=v;r.href=v}};d.prototype.setProjectorConfigTemplateJson=function(e,g){e.value=JSON.stringify(g,null,2)};d.prototype._getNumTensorsLabel=function(){return 1===this.tensorNames.length?"1 tensor":this.tensorNames.length+
 " tensors"};d.prototype._getNumRunsLabel=function(){return 1===this.runNames.length?"1 run":this.runNames.length+" runs"};d.prototype._hasChoice=function(e){return 0<e.length};d.prototype._hasChoices=function(e){return 1<e.length};return d}(a.DataPanelPolymer);a.DataPanel=b;document.registerElement(b.prototype.is,b)})(wc||(wc={}));
@@ -12781,13 +12749,7 @@ zc=this&&this.__extends||function(){var a=Object.setPrototypeOf||{__proto__:[]}i
       
       <p id="umap-sampling" class="notice">
         For faster results, the data will be sampled down to [[getUmapSampleSizeText()]] points.
-      
-      <p>
-        <iron-icon icon="book" class="book-icon"></iron-icon>
-        <a target="_blank" rel="noopener" href="https://umap-learn.readthedocs.io/en/latest/how_umap_works.html">
-          Learn more about UMAP.
-        </a>
-      
+           
     </div>
     
     <div data-panel="tsne" class="ink-panel-content">
@@ -12846,12 +12808,7 @@ zc=this&&this.__extends||function(){var a=Object.setPrototypeOf||{__proto__:[]}i
       <p>Iteration: <span class="run-tsne-iter">0</span>
       <p id="tsne-sampling" class="notice">
         For faster results, the data will be sampled down to [[getTsneSampleSizeText()]] points.
-      
-      <p>
-        <iron-icon icon="book" class="book-icon"></iron-icon>
-        <a target="_blank" href="http://distill.pub/2016/misread-tsne/">
-          How to use t-SNE effectively.
-        </a>
+
       
     </div>
     
@@ -13345,20 +13302,6 @@ vz-projector {
 <div id="container">
   <div id="appbar">
     <div>Embedding Projector für Tweets</div>
-    <div class="icons">
-      <a title="Documentation" target="_blank" href="[[documentationLink]]">
-        <paper-icon-button icon="help-outline"></paper-icon-button>
-        <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-          Open documentation
-        </paper-tooltip>
-      </a>
-      <a title="Report bug" target="_blank" href="[[bugReportLink]]">
-        <paper-icon-button icon="bug-report"></paper-icon-button>
-        <paper-tooltip position="bottom" animation-delay="0" fit-to-visible-bounds>
-          Report a bug
-        </paper-tooltip>
-      </a>
-    </div>
   </div>
   <vz-projector route-prefix="[[routePrefix]]" serving-mode="[[servingMode]]" projector-config-json-path="[[projectorConfigJsonPath]]" page-view-logging="[[pageViewLogging]]" event-logging="[[eventLogging]]">
   </vz-projector>

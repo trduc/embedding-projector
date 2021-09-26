@@ -10706,9 +10706,6 @@ a)},get _focusableElement(){return this.inputElement.textarea}});
 #state-file {
   display: none;
 }
-#no-bookmarks {
-  padding: 0 24px;
-}
 #action-buttons-container .add-icon-button {
   background-color: #03a9f4;
   color: white;
@@ -10739,60 +10736,9 @@ paper-textarea {
 }
 </style>
 
-
-<div id="bookmark-container">
-  <div id="header">
-    <div id="title">
-      BOOKMARKS ([[savedStates.length]])
-      <paper-icon-button icon="help" class="help-icon"></paper-icon-button>
-      <paper-tooltip animation-delay="0" position="top" offset="0">
-        Open this drawer to save a set of views of the projection, including
-        selected points. A file containing the bookmarks can then be saved and
-        later loaded to view them.
-      </paper-tooltip>
-    </div>
-    <div id="icon-container">
-      
-      <paper-icon-button id="expand-more" icon="expand-less" on-tap="_expandMore"></paper-icon-button>
-      <paper-icon-button id="expand-less" style="display: none" icon="expand-more" on-tap="_expandLess"></paper-icon-button>
-    </div>
-  </div>
-  <iron-collapse id="panel">
-    
-    <div id="state-section">
-      <template is="dom-if" if="[[!savedStates.length]]">
-        <p id="no-bookmarks">
-            No bookmarks yet, upload a bookmarks file or add a new bookmark by clicking the "+" below.
-        
-      </template>
-
-      <template is="dom-repeat" items="{{savedStates}}">
-        <div class="state-row">
-          <div class="state-radio">
-            <template is="dom-if" if="{{item.isSelected}}">
-              <paper-icon-button icon="radio-button-checked"></paper-icon-button>
-            </template>
-            <template is="dom-if" if="{{!item.isSelected}}">
-              <paper-icon-button icon="radio-button-unchecked" data-index$="{{index}}" on-tap="_radioButtonHandler"></paper-icon-button>
-            </template>
-          </div>
-          <div class="state-label">
-            <paper-textarea value="[[item.label]]" class="state-label-input" on-keyup="_labelChange" data-index$="[[index]]" autoresizing>
-          </paper-textarea></div>
-          <div class="state-clear">
-            <paper-icon-button icon="clear" data-index$="{{index}}" on-tap="_clearButtonHandler"></paper-icon-button>
-          </div>
-        </div>
-      </template>
-
-      <div id="action-buttons-container">
-        <paper-icon-button class="upload-download-icon-button" icon="save" title="Save bookmarks" disabled="[[!hasStates]]" on-tap="_downloadFile"></paper-icon-button>
-        <paper-icon-button class="upload-download-icon-button" icon="file-upload" title="Load bookmarks" on-tap="_uploadFile"></paper-icon-button>
-        <paper-icon-button class="add-icon-button ink-fab" icon="add" title="Add bookmark" on-tap="_addBookmark"></paper-icon-button>
-        <input type="file" id="state-file" name="state-file">
-      </div>
-    </div>
-  </iron-collapse>
+<!-- TODO: find the id and remove it -->
+<div id="bookmark-container"> 
+  <input id="state-file">
 </div>
 
 </template>
